@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update user</title>
+  <style>
+    body {
+      margin: 20px;
+    }
+
+    form {
+      width: 50%;
+      margin-left: 20px;
+    }
+
+    label {
+      display: inline-block;
+      width: 150px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 70%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .error-message {
+      color: red;
+      margin-left: 160px;
+    }
+
+    input[type="submit"] {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
+  <br/>
+  <label for="name">Enter name:</label>
+  <input type="text" th:field="*{name}" id="name"/>
+  <div class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+  <br/>
+  <label for="lastname">Enter lastname:</label>
+  <input type="text" th:field="*{lastname}" id="lastname"/>
+  <div class="error-message" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Lastname error</div>
+  <br/>
+  <label for="age">Enter age:</label>
+  <input type="text" th:field="*{age}" id="age"/>
+  <div class="error-message" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
+  <br/>
+  <label for="username">Enter username:</label>
+  <input type="text" th:field="*{username}" id="username"/>
+  <div class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</div>
+  <br/>
+  <label for="password">Enter password:</label>
+  <input type="text" th:field="*{password}" id="password"/>
+  <div class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+  <br/>
+  <input type="submit" value="Update"/>
+</form>
+</body>
+</html>
